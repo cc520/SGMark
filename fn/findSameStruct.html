@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>找寻相同的结构 用CTRL+D识别</title>
+	<!--
+		确定唯一性
+	-->
+	<style>
+		/*.containter{visibility: hidden;}*/
+	</style>
+	<script src="jquery-1.8.2.min.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
+			console.log('HelloWorld');
+			/* 生成唯一标识符 */
+
+			function Info($ele) {
+				/* 元素信息 */
+				var _info = {
+					//元素来源
+					src : '',
+					uID: '',
+					/* 唯一标识符 */
+					off: null, /* 坐标 */
+					size: null, /* 内高 */
+					/* 构造一个新页面地址*/
+					newPageSrc : '' 
+				};
+				_info.src = getLoc();
+				_info.uID = createuID();
+				_info.off = readOff();
+				_info.size = calSize();
+				_info.newPageSrc = new Page(_info).getSrc();
+				return _info;
+
+				/* 构造新页面 */
+
+				/* 获取地址 */
+				function getLoc(){
+					return location.href;
+				};
+
+				/* 创建唯一标识符 */
+				function createuID() {
+					var mark = [];
+					var $prs = $ele.parents();
+					var tagName = '';
+					var off = $ele.offset();
+					i_w = $ele.innerWidth(),
+					i_h = $ele.innerHeight();
+
+					$.each($prs, function(i, d) {
+						tagName = d.tagName;
+						mark.push(tagName);
+					});
+					var $nearPr = $ele.parent().children();
+					var index = $nearPr.index($ele);
+					mark = mark.reverse().join('>') + '>:eq(' + index + ')';
+					return mark;
+				};
+				/* 读取坐标 */
+				function readOff(){
+					return $ele.offset();
+				};
+				/* 计算内大小 */
+				function calSize(flag){
+					var w = flag ? flag + 'Width' : 'width',
+						h = flag ? flag + 'Height' : 'height';
+
+					var o = {
+						width : $ele[w](),
+						height : $ele[h]()
+					}
+					return o;
+				};
+			};
+			Info.prototype = {
+				getSrc : function() {
+				  	return this._info.src;	
+				},
+				getOff : function(){
+					return this._info.off;
+				},
+				getSize : function(){
+					return this._info.size;
+				},
+				getUId : function(){
+					return this._info.uID;
+				}
+			};
+
+			/* 页面构造函数 */
+			function Page(o_info){
+				/* 新页面信息 */
+				var pageInfo = {
+					_src : ''
+				};
+
+				/* 请求远程页面获取 页面结构过滤掉内容*/
+				function filterRemotingPage(src,o_info){
+					src = src || o_info.getSrc();
+					var uId = o_info.getUId();
+					if(!src) throw new Error('没有页面地址');
+					var html = queryRemotingPage(src);
+				};
+
+				/* 请求远程页面 */
+				function queryRemotingPage(src){
+					var htmlData = '';
+					htmlData = $('html').html();
+					return htmlData;
+				};
+				/* 生成页面 返回地址*/
+				function bulidPage(htmlStr){
+					return src;
+				}
+			};
+			Page.prototype = {
+				getSrc: function() {
+					return this._src;
+				}
+			};
+			function outputEleInfo($ele){
+				var o_info = new Info($ele);
+				var cor = o_info.getOff();
+				var size = o_info.getSize();
+				var uId = o_info.getUId();
+				var src = o_info.getSrc();
+				console.log(cor,size,uId,src);
+
+				var ir = document.getElementById('testIframe');
+				ir.src = src;
+			};
+
+			/* 创造一个新面板 
+				o_info : 要修改的元素信息
+			*/
+			function Iframe(o_info){
+
+			};
+			$('.containter').find('li').bind('click',function() {
+			  	outputEleInfo($(this));
+			  	return false;
+			});
+		});
+
+
+	</script>
+</head>
+<body>
+	<div class="containter">
+		<ul>
+			<li><a href="###">01</a></li><!-- li>a[href='###']{01} -->
+			<li><a href="###">02</a></li>
+			<li><a href="###">03</a></li>
+			<li><a href="###">04</a></li>
+		</ul>
+		<iframe frameborder="1" id="testIframe" src="./test.html"></iframe>
+	</div>
+</body>
+</html>

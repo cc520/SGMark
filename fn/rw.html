@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.selBlock{}
+		.box-shadow-left,.box-shadow-top,.box-shadow-right,.box-shadow-bottom{position: absolute;}
+		div.box-shadow-left{border-left:1px solid blue;box-shadow:-1px 0 1px 1px #1B8FC0;width: 0}
+		div.box-shadow-top{border-top:1px solid blue;box-shadow:0 -1px 1px 1px #1B8FC0;height: 0}
+		div.box-shadow-right{border-right:1px solid blue;box-shadow:1px 0 1px 1px #1B8FC0;width: 0}
+		div.box-shadow-bottom{border-bottom:1px solid blue;box-shadow:0 1px 1px 1px #1B8FC0;height: 0}
+		.h200{height: 200px;margin-bottom: 200px;}
+		.w100{width:100px;}
+		#ccontent{width: 100px;height: 100px;padding:200px;margin:200px;border:1px solid red;}
+	</style>
+	<script src="jquery-1.8.2.min.js"></script>
+	<script src="selblock.js"></script>
+	<script>
+	// (function($, window) {
+
+	// 	/* 树结构 */
+	// 	function Node(ele,child,sibling) {
+	// 		this.ele = ele;
+	// 		this.child = child;
+	// 		this.sibling = sibling;
+	// 	};
+	// 	/* 元素内容 */
+	// 	function Ele(text,attr){
+	// 		this.text = text; /* 文字 */
+	// 		this.attr = attr; /* 属性 */
+	// 	};
+
+	// 	function getData() {
+	// 		var htmlData = $('#ls_cs')[0].innerHTML;
+	// 		return htmlData;
+	// 	};
+	// 	function convertData (htmlData) {
+	// 		//返回锚点与内容
+	// 		//Hash标识结构是否一致 标签识别 先标签识别，再class识别	
+	// 		return {
+	// 			'a1' : '标题1',
+	// 			'a2' : '标题2',
+	// 			'a3' : '标题3'
+	// 		};
+	// 	};
+	// 	function formDir(cst){
+	// 		//形成结构
+	// 		var p,
+	// 			title,
+	// 			dir_ul = document.createElement('ul'),
+	// 			dir = [],
+	// 			li_clone = document.createElement('li'),
+	// 			a_clone = document.createElement('a'),
+	// 			li,
+	// 			a;
+	// 		for(p in cst){
+	// 			li = li_clone.cloneNode();
+	// 			a = a_clone.cloneNode();
+	// 			a.href = '#' + p;
+	// 			a.innerHTML = cst[p] ? cst[p] : '&nbsp;'
+	// 			li.appendChild(a);
+	// 			dir.push(li);
+	// 			dir_ul.appendChild(li);
+	// 		};
+	// 		return dir_ul;
+	// 	};
+	// 	function changeCss(dir){
+	// 		return dir;
+	// 	};
+	// 	function outputDir (dir) {
+	// 		document.body.appendChild(dir);
+	// 	};
+	// 	jQuery(document).ready(function($) {
+	// 		var data,
+	// 			cst, //数据结构
+	// 			dir; //目录
+	// 		data = getData();
+	// 		cst = convertData(data); //转化为树形结构？
+	// 		dir = formDir(cst);//根据结构形成目录，绑定好关系
+	// 		dir = changeCss(dir)//自动套用格式
+	// 		outputDir(dir);
+	// 		console.log(data);
+	// 	});
+	// })(jQuery, window);
+	</script>
+
+</head>
+<body>
+	<div id="result"></div>
+	<div id="content" style="margin-bottom:2000px;">
+		<ul>
+			<li>
+				<h1><a name="a1">标题1</a></h1>
+				<!-- <p>内内容1内容1内容1内容1内容1容1</p> -->
+			</li>
+			<!-- <li>
+				<h1><a name="a2">标题2</a></h1>
+				<p>内容2内容2内容22内容2内容2</p>
+			</li>
+			<li>
+				<h1><a name="a3">标题3</a></h1>
+				<p>内容内容3内容3容3内容33</p>
+			</li> -->
+		</ul>
+	</div>
+	<div class="box-shadow-left box-shadow"></div>
+	<div class="box-shadow-top box-shadow"></div>
+	<div class="box-shadow-bottom box-shadow"></div>
+	<div class="box-shadow-right box-shadow"></div>
+	<div id="ccontent">
+
+	</div>
+</body>
+</html>
+<script type="text/html" id="ls_cs">
+<ul>
+	<li>
+		<h1>标题1</h1>
+		<p>内容1</p>
+	</li>	
+	<li>
+		<h1>标题2</h1>
+		<p>内容2</p>
+	</li>	
+	<li>
+		<h1>标题3</h1>
+		<p>内容3</p>
+	</li>
+</ul>
+</script>
+
