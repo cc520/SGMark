@@ -1,0 +1,20 @@
+{
+  "name": "A browser action with a popup that changes the page color.",
+  "version": "1.0",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+      "default_title": "Set this page's color.",
+      "default_icon": "./images/icon.png",
+      "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "css": ["./css/reset.css","./css/myLink.css"],
+      "js": ["./js/jquery-1.8.2.js", "./js/myscript.js"]
+    }
+  ],
+  "manifest_version": 2
+}
