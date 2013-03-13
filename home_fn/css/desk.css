@@ -1,0 +1,13 @@
+/* 全局变量 */
+#main{padding:10px;}
+#main li{padding:10px;}
+
+/* 操作符 */
+._plugin_sel_wrap{position: absolute;height:0;cursor:pointer;}
+._plugin_sel{border:1px solid blue;box-shadow: 0 0 3px 3px #2686C9;position:absolute;z-index:-1;}
+._plugin_sel_wrap li{float: left;height: 10px;width: 10px;margin-right:5px;}
+._plugin_sel_wrap li a{display: block;text-indent: -9999px;height: 100%;}
+._plugin_sel_wrap li.o_fixed{background-color:#ea981a;}
+._plugin_sel_wrap li.o_remove{background-color: #45933e;  }
+._plugin_sel_wrap li.o_cancel{background-color: #ff0;}
+._plugin_sel_wrap .oper_icons{position: absolute;right:0;top:1px;display: none;}
