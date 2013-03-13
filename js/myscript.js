@@ -16,7 +16,6 @@
 				off = $self.offset(),
 				h = $self.outerHeight(),
 				w = $self.outerWidth();
-
 			$bl.offset(off).height(h);
 			$br.offset({
 				'left' : parseInt(off.left) + parseInt(w),
